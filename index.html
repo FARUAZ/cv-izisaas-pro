@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark" data-accent="sapphire">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stanislas K. | Développeur Fullstack & SaaS Builder - CV Pro</title>
+  <meta name="description" content="CV en ligne de Stanislas K. - Lead Développeur Fullstack, Architecte SaaS & Spécialiste Web Haute Performance.">
+  <meta name="keywords" content="CV développeur, Fullstack, SaaS Builder, React, Next.js, Node.js, TypeScript">
+  <meta name="author" content="Stanislas K.">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Stanislas K. | Développeur Fullstack & SaaS Builder">
+  <meta property="og:description" content="Découvrez mon parcours, mes compétences techniques, mes expertises SaaS et contactez-moi pour vos projets.">
+  <meta property="og:image" content="assets/profile.jpg">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Decorative Ambient Glows (Plus lumineuses et visibles) -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+  <!-- Quick Edit Banner (shown when edit mode active) -->
+  <aside id="editModeBanner" class="edit-banner" style="display: none;" aria-live="polite">
+    <div class="container edit-banner-inner">
+      <span class="edit-icon">✏️</span>
+      <span class="edit-text"><strong>Mode Édition Active :</strong> Cliquez directement sur n'importe quel texte pour le modifier en direct.</span>
+      <div class="edit-banner-actions">
+        <button type="button" id="btnSaveEdit" class="btn btn-sm btn-accent">Enregistrer les textes</button>
+        <button type="button" id="btnExitEdit" class="btn btn-sm btn-ghost">Terminer</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="navbar-wrapper" id="mainHeader">
+    <nav class="container navbar" aria-label="Navigation principale">
+      <a href="#hero" class="brand-logo" id="navLogo">
+        <div class="logo-mark">
+          <span class="logo-letters">SK</span>
+        </div>
+        <div class="logo-info">
+          <span class="logo-name" data-editable="logo-name">Stanislas K.</span>
+          <span class="logo-sub">CV Pro</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about" class="nav-link">À Propos</a></li>
+        <li><a href="#skills" class="nav-link">Compétences</a></li>
+        <li><a href="#experience" class="nav-link">Parcours</a></li>
+        <li><a href="#education" class="nav-link">Formations</a></li>
+        <li><a href="#testimonials" class="nav-link">Avis</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Action Toolbar (Palette, DarkMode, Edit, Print) -->
+      <div class="nav-actions">
+        <div class="nav-divider" aria-hidden="true"></div>
+
+        <!-- Palette Dropdown / Switcher -->
+        <div class="dropdown-palette" title="Changer la couleur d'accent">
+          <button type="button" class="action-btn" id="btnPalette" aria-label="Choisir la couleur d'accent">
+            <span class="palette-dot current-dot"></span>
+          </button>
+          <div class="palette-menu" id="paletteMenu">
+            <button type="button" class="palette-opt opt-sapphire" data-color="sapphire" title="Bleu Saphir Tech"></button>
+            <button type="button" class="palette-opt opt-indigo" data-color="indigo" title="Violet Indigo SaaS"></button>
+            <button type="button" class="palette-opt opt-emerald" data-color="emerald" title="Vert Émeraude"></button>
+            <button type="button" class="palette-opt opt-amber" data-color="amber" title="Ambre Énergie"></button>
+          </div>
+        </div>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button type="button" class="action-btn" id="btnThemeToggle" aria-label="Basculer thème sombre / clair" title="Basculer thème sombre / clair">
+          <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <!-- Live Quick Edit Toggle -->
+        <button type="button" class="action-btn" id="btnToggleEdit" aria-label="Activer le mode édition directe" title="Personnaliser et modifier les textes en direct">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </button>
+
+        <!-- Print / PDF Export Button -->
+        <button type="button" class="btn btn-primary btn-sm btn-print" id="btnPrintCV" title="Imprimer ou enregistrer le CV en PDF propre">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span class="btn-print-text">Exporter PDF</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-toggle" id="btnMobileToggle" aria-label="Menu mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- HERO SECTION -->
+    <section class="section hero-section" id="hero">
+      <div class="container hero-grid">
+        <!-- Hero Text Content -->
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="status-pulse"></span>
+            <span data-editable="hero-status">Disponible pour projets freelance & opportunités CDI</span>
+          </div>
+
+          <h1 class="hero-title">
+            Bonjour, je suis <br>
+            <span class="highlight-text" data-editable="hero-name">Stanislas K.</span>
+          </h1>
+
+          <h2 class="hero-subtitle">
+            <span class="dynamic-role" data-editable="hero-title">Lead Développeur Fullstack & SaaS Builder</span>
+          </h2>
+
+          <p class="hero-description" data-editable="hero-bio">
+            Passionné par la création d'applications web modernes et de solutions SaaS scalables. J'allie rigueur d'ingénierie logicielle, performance technique et sensibilité design pour créer des produits à fort impact business.
+          </p>
+
+          <!-- Key Meta Badges -->
+          <div class="hero-meta-list">
+            <div class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span data-editable="hero-location">Lomé / Remote International</span>
+            </div>
+            <div class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              <span data-editable="hero-exp">5+ Ans d'expérience pro</span>
+            </div>
+            <div class="meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+              <span data-editable="hero-reply">Réponse sous 24h</span>
+            </div>
+          </div>
+
+          <!-- Hero Action CTA Buttons -->
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary btn-lg">
+              <span>Me contacter</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#skills" class="btn btn-secondary btn-lg">
+              <span>Voir mes compétences</span>
+            </a>
+            <button type="button" class="btn btn-ghost btn-lg hero-pdf-btn" onclick="window.print()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Télécharger CV</span>
+            </button>
+          </div>
+
+          <!-- Social Links Bar -->
+          <div class="hero-socials">
+            <span class="social-label">Réseaux :</span>
+            <div class="social-icons">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Profil GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Profil LinkedIn" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="https://wa.me/22890000000" target="_blank" rel="noopener noreferrer" class="social-link whatsapp-link" title="Discuter sur WhatsApp" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              </a>
+              <a href="mailto:contact@izisaas.pro" class="social-link" title="Envoyer un email direct" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Photo & Interactive Visual -->
+        <div class="hero-visual">
+          <div class="avatar-card">
+            <div class="avatar-glow-ring"></div>
+            <div class="avatar-frame">
+              <img src="assets/profile.jpg" alt="Photo de profil Stanislas K." class="avatar-img" id="profileImg">
+            </div>
+            
+            <!-- Floating Badges -->
+            <div class="floating-badge badge-top-right">
+              <span class="badge-icon">⚡</span>
+              <div class="badge-text">
+                <span class="badge-title">Fullstack Pro</span>
+                <span class="badge-sub">React • Node • TS</span>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom-left">
+              <span class="badge-icon">🚀</span>
+              <div class="badge-text">
+                <span class="badge-title">SaaS Builder</span>
+                <span class="badge-sub">Produit & Cloud</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Interactive Metrics Counter Bar -->
+      <div class="container hero-stats-container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number"><span class="counter" data-target="5">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-label">Années d'expérience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number"><span class="counter" data-target="45">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-label">Projets & Outils Réalisés</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number"><span class="counter" data-target="15">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-label">Solutions Déployées</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number"><span class="counter" data-target="99">0</span><span class="stat-plus">.8%</span></div>
+            <div class="stat-label">Satisfaction Clients</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION À PROPOS (ABOUT) -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Mon ADN</span>
+          <h2 class="section-title">À Propos de Moi</h2>
+          <p class="section-subtitle">Concevoir avec rigueur technique et penser avec une vision orientée résultats.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Story / Bio -->
+          <div class="about-story glass-card">
+            <h3 class="about-story-title" data-editable="about-title">Qui suis-je ?</h3>
+            <p class="about-paragraph" data-editable="about-p1">
+              Ingénieur logiciel et développeur fullstack avec plus de 5 ans d'expérience, j'accompagne les entreprises, startups et créateurs de projets à bâtir des applications web robustes, fluides et élégantes.
+            </p>
+            <p class="about-paragraph" data-editable="about-p2">
+              Spécialisé dans l'écosystème <strong>JavaScript / TypeScript</strong> (React, Next.js, Node.js) ainsi que les bases de données et services cloud (PostgreSQL, Supabase, Redis), je couvre l'ensemble du cycle de développement web.
+            </p>
+            <p class="about-paragraph" data-editable="about-p3">
+              Mon approche allie propreté architecturale, respect strict des délais et optimisation continue de l'expérience utilisateur.
+            </p>
+
+            <div class="about-highlights">
+              <div class="highlight-pill">🎯 Focus Performance & UX</div>
+              <div class="highlight-pill">⚡ Code Typé & Modulaire</div>
+              <div class="highlight-pill">🛡️ Architecture Sécurisée</div>
+              <div class="highlight-pill">🤝 Transparence & Délais Respectés</div>
+            </div>
+          </div>
+
+          <!-- Value Pillars -->
+          <div class="about-pillars">
+            <div class="pillar-card glass-card">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Architecture Front & Back Moderne</h4>
+                <p>Développement modulaire, code propre, TypeScript typé, composants réutilisables et gestion d'état fluide.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card glass-card">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Solutions SaaS & Microservices</h4>
+                <p>Création d'espaces abonnés, tableaux de bord de données analytiques, multi-tenant et API REST/GraphQL robustes.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card glass-card">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Intégrations Monétaires & Webhooks</h4>
+                <p>Passerelles Stripe, PayPal, Mobile Money africain (Flooz, T-Money, Orange Money), facturation automatisée.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card glass-card">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Optimisation & Vitesse Web</h4>
+                <p>Temps de réponse ultra-rapide, cache optimisé, conformité aux standards SEO et Core Web Vitals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION COMPÉTENCES (SKILLS) -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Expertise Technique</span>
+          <h2 class="section-title">Mes Compétences & Technologies</h2>
+          <p class="section-subtitle">Un ensemble d'outils et de méthodologies éprouvées pour concevoir des applications web durables.</p>
+        </div>
+
+        <!-- Filter tabs for Skills -->
+        <div class="tabs-filter-wrapper">
+          <div class="filter-tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-skill-filter="all">Toutes</button>
+            <button type="button" class="tab-btn" data-skill-filter="frontend">Frontend & UI</button>
+            <button type="button" class="tab-btn" data-skill-filter="backend">Backend & Données</button>
+            <button type="button" class="tab-btn" data-skill-filter="saas">SaaS & Paiements</button>
+            <button type="button" class="tab-btn" data-skill-filter="devops">DevOps & Outils</button>
+          </div>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Skill: Next.js & React -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-card-top">
+              <div class="skill-icon">⚛️</div>
+              <div class="skill-info">
+                <h4 class="skill-name">React.js & Next.js</h4>
+                <span class="skill-level">Expert • 95%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 95%;"></div>
+            </div>
+            <p class="skill-desc">SSR, ISR, Server Components, Hooks avancés, architecture scalable d'applications web complexes.</p>
+          </div>
+
+          <!-- Skill: TypeScript & JavaScript -->
+          <div class="skill-card glass-card" data-category="frontend backend">
+            <div class="skill-card-top">
+              <div class="skill-icon">🟦</div>
+              <div class="skill-info">
+                <h4 class="skill-name">TypeScript / ES6+</h4>
+                <span class="skill-level">Avancé • 92%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 92%;"></div>
+            </div>
+            <p class="skill-desc">Typage strict, sécurité applicative, interfaces, architecture robuste et maintenabilité.</p>
+          </div>
+
+          <!-- Skill: Node.js & Express / NestJS -->
+          <div class="skill-card glass-card" data-category="backend">
+            <div class="skill-card-top">
+              <div class="skill-icon">🟢</div>
+              <div class="skill-info">
+                <h4 class="skill-name">Node.js & Express / Nest</h4>
+                <span class="skill-level">Avancé • 90%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 90%;"></div>
+            </div>
+            <p class="skill-desc">APIs RESTful, microservices, authentification sécurisée JWT/OAuth2 et webhooks en temps réel.</p>
+          </div>
+
+          <!-- Skill: PostgreSQL & Supabase / Prisma -->
+          <div class="skill-card glass-card" data-category="backend">
+            <div class="skill-card-top">
+              <div class="skill-icon">🐘</div>
+              <div class="skill-info">
+                <h4 class="skill-name">PostgreSQL & Supabase</h4>
+                <span class="skill-level">Avancé • 88%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 88%;"></div>
+            </div>
+            <p class="skill-desc">Modélisation relationnelle, indexation, requêtes SQL optimisées, RLS et Prisma ORM.</p>
+          </div>
+
+          <!-- Skill: CSS3, Tailwind & Design Systems -->
+          <div class="skill-card glass-card" data-category="frontend">
+            <div class="skill-card-top">
+              <div class="skill-icon">🎨</div>
+              <div class="skill-info">
+                <h4 class="skill-name">UI Design & CSS Moderne</h4>
+                <span class="skill-level">Expert • 94%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 94%;"></div>
+            </div>
+            <p class="skill-desc">Micro-animations fluides, Glassmorphism, Responsive Design mobile et accessibilité web.</p>
+          </div>
+
+          <!-- Skill: Stripe & Monétisation SaaS -->
+          <div class="skill-card glass-card" data-category="saas">
+            <div class="skill-card-top">
+              <div class="skill-icon">💳</div>
+              <div class="skill-info">
+                <h4 class="skill-name">Stripe & Monétisation SaaS</h4>
+                <span class="skill-level">Expert • 92%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 92%;"></div>
+            </div>
+            <p class="skill-desc">Abonnements récurrents, facturation automatisée, portail client et gestion multi-devises.</p>
+          </div>
+
+          <!-- Skill: Mobile Money Africain -->
+          <div class="skill-card glass-card" data-category="saas">
+            <div class="skill-card-top">
+              <div class="skill-icon">📱</div>
+              <div class="skill-info">
+                <h4 class="skill-name">Passerelles Mobile Money</h4>
+                <span class="skill-level">Avancé • 87%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 87%;"></div>
+            </div>
+            <p class="skill-desc">Intégration T-Money, Flooz, Orange Money, Wave via agrégateurs sécurisés de paiement.</p>
+          </div>
+
+          <!-- Skill: Docker, Git, CI/CD -->
+          <div class="skill-card glass-card" data-category="devops">
+            <div class="skill-card-top">
+              <div class="skill-icon">🐳</div>
+              <div class="skill-info">
+                <h4 class="skill-name">Docker, Git & CI/CD</h4>
+                <span class="skill-level">Intermédiaire+ • 82%</span>
+              </div>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 82%;"></div>
+            </div>
+            <p class="skill-desc">Conteneurisation, GitHub Actions, intégration continue et déploiements cloud sur VPS / Vercel.</p>
+          </div>
+        </div>
+
+        <!-- Badges Stack Cloud -->
+        <div class="tech-cloud-box glass-card">
+          <h4 class="tech-cloud-title">Technologies & Outils fréquemment utilisés :</h4>
+          <div class="tech-badges">
+            <span class="badge-tag">React 18</span>
+            <span class="badge-tag">Next.js 14</span>
+            <span class="badge-tag">TypeScript</span>
+            <span class="badge-tag">Node.js</span>
+            <span class="badge-tag">TailwindCSS</span>
+            <span class="badge-tag">PostgreSQL</span>
+            <span class="badge-tag">Supabase</span>
+            <span class="badge-tag">Prisma ORM</span>
+            <span class="badge-tag">Redis</span>
+            <span class="badge-tag">Stripe API</span>
+            <span class="badge-tag">Docker</span>
+            <span class="badge-tag">Git & GitHub</span>
+            <span class="badge-tag">Figma</span>
+            <span class="badge-tag">REST & GraphQL</span>
+            <span class="badge-tag">Vercel & AWS</span>
+            <span class="badge-tag">SEO Technique</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION EXPÉRIENCES & PARCOURS (EXPERIENCE) -->
+    <section class="section experience-section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Carrière</span>
+          <h2 class="section-title">Parcours & Expériences</h2>
+          <p class="section-subtitle">Une progression continue jalonnée de réussites techniques et de projets concrets.</p>
+        </div>
+
+        <div class="timeline">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role" data-editable="exp1-role">Fondateur & Lead Développeur Fullstack</h3>
+                  <div class="timeline-company" data-editable="exp1-company">IziSaaS Studio • Indépendant / Projets SaaS</div>
+                </div>
+                <div class="timeline-date">2023 - Aujourd'hui</div>
+              </div>
+              <p class="timeline-summary" data-editable="exp1-desc">
+                Direction technique et conception d'outils web, plateformes digitales et solutions logicielles sur-mesure.
+              </p>
+              <ul class="timeline-points">
+                <li>Architecture et lancement d'applications web avec monétisation automatisée (Stripe & Mobile Money).</li>
+                <li>Mise en place de tableaux de bord performants traitant des milliers de requêtes en temps réel.</li>
+                <li>Optimisation des temps de réponse et de la charge serveur avec cache distribué et requêtes SQL affinées.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Next.js</span>
+                <span>TypeScript</span>
+                <span>Node.js</span>
+                <span>Supabase</span>
+                <span>Stripe API</span>
+                <span>TailwindCSS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role" data-editable="exp2-role">Senior Frontend & Web Apps Architect</h3>
+                  <div class="timeline-company" data-editable="exp2-company">Apex Digital Solutions • CDI / Hybride</div>
+                </div>
+                <div class="timeline-date">2021 - 2023</div>
+              </div>
+              <p class="timeline-summary" data-editable="exp2-desc">
+                Responsable du développement d'interfaces frontend et d'outils web interactifs pour des clients diversifiés.
+              </p>
+              <ul class="timeline-points">
+                <li>Développement et refonte complète d'applications web réactives avec suivi en temps réel.</li>
+                <li>Création d'une bibliothèque de composants UI réutilisables accélérant les livraisons de fonctionnalités.</li>
+                <li>Coordination technique et animation des revues de code pour garantir la qualité du livrable.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>React</span>
+                <span>Redux Toolkit</span>
+                <span>REST APIs</span>
+                <span>WebSockets</span>
+                <span>Jest</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="timeline-role" data-editable="exp3-role">Développeur Web Fullstack</h3>
+                  <div class="timeline-company" data-editable="exp3-company">InnovTech Consulting • Agence Web</div>
+                </div>
+                <div class="timeline-date">2019 - 2021</div>
+              </div>
+              <p class="timeline-summary" data-editable="exp3-desc">
+                Conception et intégration de sites web professionnels, portails intranet et solutions e-commerce pour PME.
+              </p>
+              <ul class="timeline-points">
+                <li>Développement sur-mesure de plus de 20 sites et plateformes web avec passerelles de paiement.</li>
+                <li>Optimisation SEO technique permettant aux clients un meilleur positionnement dans les moteurs de recherche.</li>
+                <li>Maintenance corrective et évolutive des bases de données et serveurs d'hébergement.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>JavaScript</span>
+                <span>PHP / MySQL</span>
+                <span>HTML5 / CSS3</span>
+                <span>Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION FORMATIONS & CERTIFICATIONS -->
+    <section class="section education-section" id="education">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Bagage Académique</span>
+          <h2 class="section-title">Formations & Certifications</h2>
+          <p class="section-subtitle">Un socle académique solide combiné à une formation continue exigeante.</p>
+        </div>
+
+        <div class="education-grid">
+          <!-- Item 1 -->
+          <div class="edu-card glass-card">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-body">
+              <span class="edu-year">2016 - 2019</span>
+              <h3 class="edu-title" data-editable="edu1-title">Diplôme d'Ingénieur / Licence Pro Génie Logiciel</h3>
+              <h4 class="edu-school" data-editable="edu1-school">Institut Supérieur des Technologies & Numérique</h4>
+              <p class="edu-desc">Algorithmique avancée, conception de bases de données, architectures logicielles et sécurité informatique.</p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="edu-card glass-card">
+            <div class="edu-icon">🏆</div>
+            <div class="edu-body">
+              <span class="edu-year">2023</span>
+              <h3 class="edu-title" data-editable="edu2-title">Certification AWS Cloud Practitioner & Architecte Web</h3>
+              <h4 class="edu-school" data-editable="edu2-school">Amazon Web Services Training</h4>
+              <p class="edu-desc">Infrastructures Cloud (EC2, S3, RDS, CloudFront), haute disponibilité et scalabilité automatique.</p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="edu-card glass-card">
+            <div class="edu-icon">⚡</div>
+            <div class="edu-body">
+              <span class="edu-year">2022</span>
+              <h3 class="edu-title" data-editable="edu3-title">Spécialisation Fullstack React & Architecture Node.js</h3>
+              <h4 class="edu-school" data-editable="edu3-school">Certifié Meta / Coursera</h4>
+              <p class="edu-desc">Patterns avancés React, testing unitaire, gestion d'état complexe et intégration continue.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION TÉMOIGNAGES (TESTIMONIALS) -->
+    <section class="section testimonials-section" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Recommandations</span>
+          <h2 class="section-title">Ce que disent mes collaborateurs</h2>
+          <p class="section-subtitle">La satisfaction des équipes et des clients au cœur de chaque mission.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "Stanislas a conçu notre plateforme web en un temps record avec une propreté de code remarquable. Le système de paiement et l'interface utilisateur sont fluides et fiables."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar-text">MK</div>
+              <div class="author-meta">
+                <div class="author-name">Michel K.</div>
+                <div class="author-role">Co-fondateur @ DataFlow Solutions</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "Une grande écoute et une vision produit très appréciable pour un développeur. Il apporte des optimisations ergonomiques qui rendent le produit particulièrement agréable à utiliser."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar-text">AB</div>
+              <div class="author-meta">
+                <div class="author-name">Amina B.</div>
+                <div class="author-role">Product Owner @ FinTech Solutions</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <blockquote class="testimonial-quote">
+              "Rigueur, disponibilité exemplaire et communication transparente. La plateforme tourne parfaitement sans le moindre ralentissement grâce à son architecture bien pensée."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar-text">EL</div>
+              <div class="author-meta">
+                <div class="author-name">Emmanuel L.</div>
+                <div class="author-role">Directeur des Opérations @ Logix Services</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION CONTACT -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Passez à l'Action</span>
+          <h2 class="section-title">Démarrons Votre Projet</h2>
+          <p class="section-subtitle">Vous avez un projet web, besoin d'un renfort technique ou d'un échange professionnel ? Contactez-moi dès maintenant.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info Cards -->
+          <div class="contact-cards">
+            <!-- Card 1: Email -->
+            <a href="mailto:contact@izisaas.pro" class="contact-card glass-card">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="contact-card-content">
+                <span class="contact-card-label">Email Professionnel</span>
+                <span class="contact-card-value" data-editable="contact-email">contact@izisaas.pro</span>
+              </div>
+            </a>
+
+            <!-- Card 2: WhatsApp Direct -->
+            <a href="https://wa.me/22890000000" target="_blank" rel="noopener noreferrer" class="contact-card glass-card whatsapp-hover">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              </div>
+              <div class="contact-card-content">
+                <span class="contact-card-label">WhatsApp Direct</span>
+                <span class="contact-card-value" data-editable="contact-whatsapp">+228 90 00 00 00 (Chat instantané)</span>
+              </div>
+            </a>
+
+            <!-- Card 3: Location -->
+            <div class="contact-card glass-card">
+              <div class="contact-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="contact-card-content">
+                <span class="contact-card-label">Localisation & Disponibilité</span>
+                <span class="contact-card-value" data-editable="contact-place">Lomé (Togo) • GMT+0 (Disponible Remote)</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Quick Pitch Box -->
+            <div class="pitch-box glass-card">
+              <div class="pitch-badge">⚡ Engagement & Réactivité</div>
+              <p>Chaque collaboration bénéficie d'une écoute attentive, d'un suivi transparent et d'un code propre prêt pour la production.</p>
+            </div>
+          </div>
+
+          <!-- Interactive Contact Form -->
+          <div class="contact-form-wrapper glass-card">
+            <h3 class="form-title">Envoyer un message</h3>
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName">Votre Nom *</label>
+                  <input type="text" id="contactName" name="name" required placeholder="Ex: Jean Dupont">
+                  <span class="error-text" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Votre Email *</label>
+                  <input type="email" id="contactEmail" name="email" required placeholder="nom@entreprise.com">
+                  <span class="error-text" id="emailError"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject">Objet du message *</label>
+                <select id="contactSubject" name="subject" required>
+                  <option value="">Sélectionnez un sujet...</option>
+                  <option value="web">Développement d'application Web</option>
+                  <option value="saas">Création d'un produit SaaS / MVP</option>
+                  <option value="freelance">Mission Freelance / Renfort d'équipe Tech</option>
+                  <option value="recruitment">Offre d'emploi / CDI</option>
+                  <option value="other">Autre opportunité</option>
+                </select>
+                <span class="error-text" id="subjectError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage">Votre Message *</label>
+                <textarea id="contactMessage" name="message" rows="4" required placeholder="Décrivez brièvement votre besoin, vos objectifs ou vos délais..."></textarea>
+                <span class="error-text" id="messageError"></span>
+              </div>
+
+              <!-- Bouton élégant, raffiné et non démesuré -->
+              <div class="form-submit-container">
+                <button type="submit" class="btn btn-primary btn-submit-elegant" id="btnSubmitForm">
+                  <span>Envoyer le Message</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <span class="logo-mark-sm">SK</span>
+          <span class="footer-brand">Stanislas K.</span>
+        </div>
+        <p class="footer-copy">© <span id="currentYear"></span> Stanislas K. - CV Professionnel en ligne.</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top" aria-label="Retour en haut de page" title="Retour en haut de page">
+          <span>Haut de page</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Direct WhatsApp Button -->
+  <a href="https://wa.me/22890000000" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contacter directement sur WhatsApp" title="Contacter sur WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript App Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
